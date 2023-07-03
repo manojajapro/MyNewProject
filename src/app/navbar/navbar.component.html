@@ -1,0 +1,143 @@
+<!-- <div class="navButton">
+    <button class="btn btn-primary">Input</button>
+    <button class="btn btn-primary">Output</button>
+</div> -->
+
+
+    
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="container-fluid text-center border-0 p-2">
+      <a class="navbar-brand" href="#"><b>Assignment</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="container-button justify-content-start">
+
+            <button  type="button" class="btn btnToogle" (click)="InputToggle()" [ngClass]="{'btn-active': isActive}">INPUT</button>
+            <button  type="button" class="btn btnToogle" (click)="OutputToggle()" [ngClass]="{'btn-active': !isActive}">OUTPUT</button>
+            <!-- <button class="btn btn-outline-success me-0 float-left" type="button">Input</button>
+            <button class="btn btn-outline-success me-0" type="button">Output</button> -->
+            <!-- <button class="btn btn-sm btn-outline-secondary" type="button">Output</button> -->
+          </form>
+
+
+        <!--  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button class="btn btn-primary" href="#">Input</button>
+             <a class="nav-link active" aria-current="page" href="#">Input</a> 
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary">Output</button>
+             <a class="nav-link active" aria-current="page" href="#">Output</a> 
+          </li>
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> 
+        </ul> -->
+
+       <!--  <div class="navEx">
+                 <button class="btn btn-primary float-right">Exercise 2</button> 
+              
+        </div>-->
+        <!-- <form class="searchButton d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
+
+  <div class="headernav" *ngIf="inputChart">
+    <div class="belowNavbar d-flex">
+        <p class="topic-item" href="#"><b>Country Fuel Capacities</b></p>
+        <!-- <div class="dropDownBar d-flex">
+            <div class="SelectOption" class=" d-flex align-items-center ">
+                <label for="pet-select">Region:</label>
+                  <select name="region" id="pet-select">
+    <option value="">--Please Select--</option>
+    <option value="us">US</option>
+    <option value="uk">UK</option>
+    <option value="india">INDIA</option>
+</select>
+            </div>
+           <div class="SelectOption" class=" d-flex align-items-center ">
+            <label for="pet-select">City:</label>
+            <select name="city" id="city-select">
+<option value="">--Please Select--</option>
+<option value="city">Bangalore</option>
+<option value="city">Chennai</option>
+<option value="city">Delhi</option>
+</select>
+</div>
+<div class="SelectOption" class=" d-flex align-items-center ">
+    <label for="pet-select">Year:</label>
+                  <select name="year" id="year-select">
+    <option value="">--Please Select--</option>
+    <option value="year">2000</option>
+    <option value="year">2001</option>
+    <option value="year">2002</option>
+</select>
+</div>
+</div> -->
+<div class="dropDownBar">
+  <span><b> Region:</b></span>
+  <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
+      aria-label=".form-select-sm example">
+      <option *ngFor="let region of allRegions; let i = index" [value]="region">
+          {{region}}
+      </option>
+  </select>
+
+  <span><b>City:</b></span>
+  <select (change)="onCityChangeHandler($event)" class="form-select form-select-sm "
+      aria-label=".form-select-sm example">
+      <option *ngFor="let city of availableCitiesForSelectedRegion; let i=index" [value]="city">{{city}}
+      </option>
+  </select>
+
+  <span><b> Year:</b></span>
+  <select (change)="onYearChangeHandler($event)" class="form-select form-select-sm"
+      aria-label=".form-select-sm example">
+      <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
+  </select>
+</div>
+
+</div>
+
+    <!-- <div class="CardStyleActive">
+        <div _ngcontent-gwv-c51="" class="d-flex p-4 rounded-bottom cardStyleActive">
+            <div _ngcontent-gwv-c51="" class="col-12 border rounded pr-2 cardStyle">
+                <div _ngcontent-gwv-c51="" id="chartdiv" style="width: 100%; height: 33.4rem;">
+                    <div style="position: relative; height: 100%;">
+                        <div style="position: absolute; width: 1395px; height: 534px;"><div>
+                        <canvas width="1743" height="667" style="position: absolute; top: 0px; left: 0px; width: 1395px; height: 534px;"></canvas>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <div _ngcontent-gwv-c51="" class="p-2"></div>
+        </div>
+        
+
+    </div> -->
+
+    <app-input *ngIf="inputChart"></app-input>
+    <app-output *ngIf="!inputChart"></app-output>
+
+  </div>
+
+
+
+
+  

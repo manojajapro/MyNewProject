@@ -1,0 +1,84 @@
+.container-fluid {
+align-items: center;
+flex-direction: row;
+/* background-color:#b7c8d3; */
+border: 2px solid #f9fafd;
+padding: 12px 16px 6px 14px;
+font: 1em Sans-serif;
+justify-content: space-between !important;
+display: flex !important;
+}
+.container-button{
+    margin-left: 8rem;
+    border: 2px solid #8f9aec;
+    border-radius: 10px;
+
+}
+.searchButton{
+    margin-left: 40rem;
+}
+.headernav{
+    flex-direction: row;
+    align-content: center;
+    
+
+}
+.topic-item{
+    font: 1em Sans-serif;
+    font-size: 20px;
+    margin-right: 96px;
+
+}
+.dropDownBar {
+    position: absolute;
+    right: 15rem;
+    top: 6rem;
+    display: flex;
+    
+}
+.belowNavbar{
+    background-color: rgb(227, 233, 240);
+    padding: 13px 1px 4px 15px;
+    margin: 6px 35px;
+    /* height: 4rem; */
+    border: 2px solid #6684df;
+    color: #052efb;
+
+}
+.nav-item{
+    
+    padding: 12px 16px 6px 14px;
+
+}
+.navEx {
+    margin-left: 41rem;
+}
+
+.CardStyleActive {
+    border: 1px solid #9fb2f4;
+    background-color: #a4ee9f;
+}
+.btnTogle{
+    height: 35px;
+    width: 100px;
+}
+.btn-active{
+    color: #E4E6EF !important;
+    background-color:#3192d2;
+    font-weight: bold;
+}
+label {
+    font-family: sans-serif;
+    font-size: 1rem;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+select {
+    font-size: 0.9rem;
+    padding: 2px 3rem;
+    border-radius: 20px;
+    border: 1px solid #5e43f4;
+    margin-right: auto;
+}
