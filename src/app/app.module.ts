@@ -11,6 +11,7 @@ import { BackendDataComponent } from './backend-data/backend-data.component';
 import { OutputComponent } from './output/output.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { OutputComponent } from './output/output.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

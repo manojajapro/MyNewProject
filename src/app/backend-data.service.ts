@@ -11,17 +11,15 @@ export class BackendDataService {
 
   constructor(private http: HttpClient) {}
 
-  // get model data
+  // model data
   getModelData(): any {
     return this.http.get(this.modelDataUrl);
   }
 
-  // get fetch data
+  // fetch data
   getfetchData(): any {
     return this.http.get(this.fetchDataUrl);
   }
-
-  // get the data with the help of region city year
   getValuesForRCY(region: any, city: string, year: any) {
     return this.http.request('POST', this.valuesPostUrl, {
       params: { city, region, year },

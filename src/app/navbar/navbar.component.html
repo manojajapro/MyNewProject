@@ -132,8 +132,21 @@
 
     </div> -->
 
-    <app-input *ngIf="inputChart"></app-input>
-    <app-output *ngIf="!inputChart"></app-output>
+    <!-- <div class="col-md-4 d-flex align-items-center typebtns">
+      <div class="nav-btn-container" style="border: solid 1px #eee; padding: 4px;
+        border-radius: 9px;">
+        <button routerLink="/home" (click)="changeViewType('model')" type="button" class="btn p-2 border-0"
+          style="border-radius:5px" [ngClass]="{'btn-active' : viewType == 'model' }">Explore Models</button>
+        <button routerLink="/chatgpt" (click)="changeViewType('chatgpt')" type="button" class="btn p-2 border-0"
+          style="border-radius:5px" [ngClass]="{'btn-active' : viewType == 'chatgpt' }">Explore
+          Insights</button>
+      </div>
+    </div> -->
+
+    <!-- <app-input *ngIf="isActive"></app-input>
+    <app-output *ngIf="!isActive"></app-output> -->
+    <app-input></app-input>
+    
 
   </div>
 

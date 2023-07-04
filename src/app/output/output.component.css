@@ -1,0 +1,77 @@
+.grcnav {
+    color: #0a28d3;
+    background-color: rgb(227, 233, 240);
+    padding: 16px 1px 4px 15px;
+    font-size: 20px;
+    border: 2px solid #6684df;
+    margin: 6px 35px;
+    height: 3.5rem;
+    
+}
+.columnTable{
+
+}
+
+.outputChart {
+    width: 1063px;
+    height: 512px;
+    border: 1px solid #cbcccf;
+    background-color: rgb(202, 217, 251);
+    margin-left: 4rem;
+    
+}
+.dataGraph{ 
+    background-color: rgb(202, 217, 251);
+    /* margin: 2rem 36rem;*/
+    margin-left: 4rem; 
+    height: 28rem;
+    width: 49rem;
+    
+}
+.graph {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .graph .cardBody{
+    padding: 20px 30px;
+  }
+    
+  th,td {
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid ;
+  }
+  .table {
+    margin-bottom: 0;
+    border: 1px;
+    table-layout: auto;
+    width: 150px;
+  }
+  
+  .form-range::-webkit-slider-runnable-track {
+    background-color: rgb(46, 96, 245);
+  }
+  .compBody{
+    background-color: rgb(227, 233, 240);
+    margin: 3rem;
+    border: 1px solid #f4f4f4;
+  }
+  .compHeader{
+    background-color: #c4c9f9;
+    padding: 12px;
+    font: 1.5em Sans-serif;
+    margin: 35px;
+
+  }
+  /* .ConfSelect{
+    margin: 28px;
+  } */
+.columnTable{
+    overflow: auto;
+    padding: 1px;
+    margin: 45px;
+}
+  

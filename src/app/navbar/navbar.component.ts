@@ -39,7 +39,7 @@ export class NavbarComponent {
 
   ngAfterViewInit() {}
 
-  // fetch data
+  // fetching 
   async fetchFeedsData() {
     await this.service.getfetchData().subscribe((data: any) => {
       this.data = data.data;
@@ -50,7 +50,7 @@ export class NavbarComponent {
   }
 
   extractAllRegions() {
-    // extractiong all regions
+    // extractiong regions
     console.log('Inside extract data');
     console.log('Data', this.data);
     this.allRegions = this.data.map((obj: any) => {
@@ -58,17 +58,13 @@ export class NavbarComponent {
     });
     console.log('allRegions', this.allRegions);
   }
-
-  // call only this function on any changes in filtered data
   updateAvailableData() {
-    // extractiong the object whose region is selected
     this.selectedObject = this.data.filter(
       (i: any) => i.region == this.selectedRegion
     );
     console.log('selectedObject :', this.selectedObject);
 
-    //update available cities
-    this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
+     this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
       (obj: any) => {
         return obj.city;
       }
@@ -82,45 +78,38 @@ export class NavbarComponent {
   }
 
   updateAvailableYears() {
-    // update available years
     this.availableYears = this.selectedObject[0].cities.filter((obj: any) => {
       return obj.city == this.selectedCity;
     })[0].years;
 
     console.log('availableYears: ', this.availableYears);
   }
-
   onRegionChangeHandler(e: any) {
     this.selectedRegion = e.target.value;
     console.log('selectedRegion:', this.selectedRegion);
     this.updateAvailableData();
     this.preparechart();
   }
-
   onCityChangeHandler(e: any) {
     this.selectedCity = e.target.value;
     console.log('selectedCity: ', this.selectedCity);
     this.updateAvailableData();
     this.preparechart();
   }
-
   onYearChangeHandler(e: any) {
     console.log('Year:', e.target.value);
     this.selectedYear = e.target.value;
     this.preparechart();
   }
-
   async getValuesForRYCFromApi(region: any, city: any, year: any) {
     await this.service
       .getValuesForRCY(region, city, year)
       .subscribe((values: any) => {
         console.log('values', values);
         this.graphValue = values.data[0];
-
         delete this.graphValue.Year;
         delete this.graphValue.City;
         delete this.graphValue.Region;
-
         console.log('graphValue 1: ', this.graphValue);
         Object.keys(this.graphValue).forEach((key: any) => {
           this.graphValue1.push({
@@ -131,8 +120,6 @@ export class NavbarComponent {
         console.log('graphValue 2: ', this.graphValue1);
       });
   }
-  
- 
   InputToggle(){
     this.isActive = true;
     this.inputChart = true;
