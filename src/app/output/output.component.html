@@ -1,61 +1,58 @@
 <div>
-    <div *ngIf="globalCapacity" class="card grcnav d-flex">
+    <div class="card grcnav d-flex">
         <b>Global Refining Capacity</b>
     </div>
     <div class="outputChartTable">
         <div class="dataGraph" id="chartdivCon" style="height: 600px; width: 90%;"></div>
-        <br><h6 class="scrollingLeft" style="text-align: end; color: #310bdb; margin: 2px;">*Scroll for more...</h6>
-        <div class="columnTable">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th class="tableHead">Configuration</th>
-                        <td *ngFor="let obj of globalCapacity">{{obj.Configuration}}</td>
-                    </tr>
-                    <tr>
-                        <th class="tableHead">capacity</th>
-                        <td *ngFor="let obj of globalCapacity">{{obj.CAP}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        
+        <br><h6 class="scrollingLeft" style="text-align: end; color: #310bdb; ">*Scroll for more...</h6>
+       
+        <div *ngIf="gCapacity" class="card config-capacity-container">
+            <div class="columnTable">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="tableHead">Configuration</th>
+                            <td *ngFor="let obj of gCapacity">{{obj.Configuration}}</td>
+                        </tr>
+                        <tr>
+                            <th class="tableHead">capacity</th>
+                            <td *ngFor="let obj of gCapacity">{{obj.CAP}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+        </div>  
     </div>
     <div>
-
     </div>
 </div>
-
 <div class="cardHeadBody mt-3 mb-3">
     <div class="compHeader">
         <p><b>Composition limits for Assets</b></p>
     </div>
     <div class="compBody">
-        <div class="row">
+        <div class="column">
             <div class="col-2">
                 <span><p><b>Select Configuration:</b> </p></span>
             </div>
-            <div class="col-3 d-inline-block">
+            <div class="col-5 d-inline-block">
                 <select (change)="selectCongingChangeHandler($event)" class="form-select form-select-sm"aria-label=".form-select-sm example">
                     <option [value]="Configuration" *ngFor="let Configuration of allConfigurations">{{Configuration}}</option>
                 </select>
             </div>
         </div>
 
-        <div class="row flex-wrap">
-            <div *ngFor="let cFO of selectedConfigurationData"
-                class="cardBody col-md-4  range-container mt-2 p-1">
+        <div class="RangeComp column flex-wrap">
+            <div *ngFor="let cFO of selectedConfigurationData" class="cardBody col-md-10  range-container mt-2 p-1">
                 <div class="d-flex justify-content-center align-content-center">
                     <span class="mb-2">Feed: {{cFO.Feed}}</span>
                 </div>
-
                 <div class="d-flex justify-content-between align-items-center px-5">
                     <span>{{cFO.min_comp}}</span>
                     <input disabled style="width: 70%" type="range" (min)="cFO.min_comp" (max)="cFO.max_comp" class="form-range" step="0.01" [value]="cFO.Composition">
                     <span>{{cFO.max_comp}}</span>
                 </div>
-
                 <div class="d-flex justify-content-center align-content-center">
                     <span class="mb-2">{{cFO.Composition}} - average</span>
                 </div>
@@ -63,3 +60,7 @@
         </div>
     </div>
 </div>
+
+<div class="DevelopedBy" >
+    <b> By Ajapro AI Technologies Pvt Ltd.</b>
+ </div>

@@ -26,7 +26,7 @@ export class NavbarComponent {
   selectedObject: any;
   graphValue: any;
   graphValue1: any = [];
-  graphValues: any;
+ 
 
   constructor(private service: BackendDataService) {}
 
@@ -43,16 +43,14 @@ export class NavbarComponent {
   async fetchFeedsData() {
     await this.service.getfetchData().subscribe((data: any) => {
       this.data = data.data;
-      this.extractAllRegions();
+      this.extractRegions();
       this.updateAvailableData();
       this.preparechart();
     });
   }
 
-  extractAllRegions() {
+  extractRegions() {
     // extractiong regions
-    console.log('Inside extract data');
-    console.log('Data', this.data);
     this.allRegions = this.data.map((obj: any) => {
       return obj.region;
     });
@@ -62,42 +60,33 @@ export class NavbarComponent {
     this.selectedObject = this.data.filter(
       (i: any) => i.region == this.selectedRegion
     );
-    console.log('selectedObject :', this.selectedObject);
 
      this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
       (obj: any) => {
         return obj.city;
       }
     );
-    console.log(
-      'availableCitiesForSelectedRegion: ',
-      this.availableCitiesForSelectedRegion
-    );
-
-    this.updateAvailableYears();
+    this.updateYearsAvail();
   }
 
-  updateAvailableYears() {
+  updateYearsAvail() {
     this.availableYears = this.selectedObject[0].cities.filter((obj: any) => {
       return obj.city == this.selectedCity;
     })[0].years;
 
-    console.log('availableYears: ', this.availableYears);
+    this.selectedYear = this.availableYears[0];
   }
   onRegionChangeHandler(e: any) {
     this.selectedRegion = e.target.value;
-    console.log('selectedRegion:', this.selectedRegion);
     this.updateAvailableData();
     this.preparechart();
   }
   onCityChangeHandler(e: any) {
     this.selectedCity = e.target.value;
-    console.log('selectedCity: ', this.selectedCity);
     this.updateAvailableData();
     this.preparechart();
   }
   onYearChangeHandler(e: any) {
-    console.log('Year:', e.target.value);
     this.selectedYear = e.target.value;
     this.preparechart();
   }
@@ -110,14 +99,14 @@ export class NavbarComponent {
         delete this.graphValue.Year;
         delete this.graphValue.City;
         delete this.graphValue.Region;
-        console.log('graphValue 1: ', this.graphValue);
+  
         Object.keys(this.graphValue).forEach((key: any) => {
           this.graphValue1.push({
             country: key,
             value: this.graphValue[key],
           });
         });
-        console.log('graphValue 2: ', this.graphValue1);
+       
       });
   }
   InputToggle(){
@@ -143,6 +132,13 @@ preparechart() {
    * ---------------------------------------
    */
 
+  let divId = 'chartdiv';
+    am5.array.each(am5.registry.rootElements, function (root) {
+      if (root.dom.id == divId) {
+        root.dispose();
+      }
+    });
+
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
   var root = am5.Root.new('chartdiv');
@@ -166,7 +162,7 @@ preparechart() {
   // Add cursor
   // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
   var cursor = chart.set('cursor', am5xy.XYCursor.new(root, {}));
-  cursor.lineY.set('visible', false);
+  cursor.lineY.set('visible', true);
 
   // Create axes
   // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/

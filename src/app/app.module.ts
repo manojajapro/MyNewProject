@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InputComponent } from './input/input.component';
 import {HttpClientModule} from '@angular/common/http';
-import { BackendDataComponent } from './backend-data/backend-data.component';
+// import { BackendDataComponent } from './backend-data/backend-data.component';
 import { OutputComponent } from './output/output.component';
 
 
@@ -17,7 +17,7 @@ import { OutputComponent } from './output/output.component';
     AppComponent,
     NavbarComponent,
     InputComponent,
-    BackendDataComponent,
+    // BackendDataComponent,
     OutputComponent
   ],
   imports: [
