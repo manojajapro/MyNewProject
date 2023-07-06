@@ -18,11 +18,9 @@ export class NavbarComponent {
   allRegions: string[] = [];
   availableCitiesForSelectedRegion: string[] = [];
   availableYears: any = [];
-
   selectedRegion: string = 'ANZ';
   selectedCity: string = 'Altona';
   selectedYear: number = 2005;
-
   selectedObject: any;
   graphValue: any;
   graphValue1: any = [];
@@ -32,7 +30,7 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.fetchFeedsData();
-    this.getValuesForRYCFromApi('ANZ', 'Altona', 2005);
+    this.getRYCFromApi('ANZ', 'Altona', 2005);
     this.preparechart();
   
   }
@@ -44,30 +42,31 @@ export class NavbarComponent {
   async fetchFeedsData() {
     await this.service.getfetchData().subscribe((data: any) => {
       this.data = data.data;
-      this.extractRegions();
-      this.updateAvailableData();
       this.preparechart();
+      this.extractRegions();
+      this.updateAvailData();
     });
   }
 
-  extractRegions() {
-    // extractiong regions
-    this.allRegions = this.data.map((obj: any) => {
-      return obj.region;
-    });
-    console.log('allRegions', this.allRegions);
-  }
-  updateAvailableData() {
+  updateAvailData() {
     this.selectedObject = this.data.filter(
       (i: any) => i.region == this.selectedRegion
     );
 
+    
      this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
       (obj: any) => {
         return obj.city;
       }
     );
     this.updateYearsAvail();
+  }
+  extractRegions() {
+    // extractiong regions
+    this.allRegions = this.data.map((obj: any) => {
+      return obj.region;
+    });
+    console.log('allRegions', this.allRegions);
   }
 
   updateYearsAvail() {
@@ -79,19 +78,19 @@ export class NavbarComponent {
   }
   onRegionChangeHandler(e: any) {
     this.selectedRegion = e.target.value;
-    this.updateAvailableData();
+    this.updateAvailData();
     this.preparechart();
   }
   onCityChangeHandler(e: any) {
     this.selectedCity = e.target.value;
-    this.updateAvailableData();
+    this.updateAvailData();
     this.preparechart();
   }
   onYearChangeHandler(e: any) {
     this.selectedYear = e.target.value;
     this.preparechart();
   }
-  async getValuesForRYCFromApi(region: any, city: any, year: any) {
+  async getRYCFromApi(region: any, city: any, year: any) {
     await this.service
       .getValuesForRCY(region, city, year)
       .subscribe((values: any) => {

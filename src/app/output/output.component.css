@@ -5,6 +5,7 @@
     font-size: 20px;
     margin: 0px 50px;
     height: 3.5rem;
+    font: 1.2em Verdana;
 }
 .outputChartTable{
   /* margin: 47px; */
@@ -48,7 +49,7 @@
   th,td {
     justify-content: center;
     align-items: center; 
-    padding: 10px 15px;
+    padding: 6px 44px;
     border: 1px solid ; 
     display: table-caption;
 
@@ -96,8 +97,7 @@
     margin: 28px;
   } */
 .columnTable{
-    padding: 55px;
-    margin: 2rem; 
+    margin: 3rem; 
     border-style: solid;
     vertical-align: inherit;
     height: 356px;
@@ -127,6 +127,7 @@
   background-color: rgb(10 24 80);
   border-radius: 10px;
   border: 1px solid #fff;
+  margin-top: 2rem;
 }
 .containerOI{
   background-color: #24246a;
