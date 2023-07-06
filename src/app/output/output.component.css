@@ -1,20 +1,22 @@
 .grcnav {
-    color: #0a28d3;
-    background-color: rgb(227, 233, 240);
+    color: #ffffff;
+    background-color: #24246a;
     padding: 16px 1px 4px 15px;
     font-size: 20px;
-    border: 2px solid #6684df;
-    margin: 6px 35px;
+    margin: 0px 50px;
     height: 3.5rem;
-    
+}
+.outputChartTable{
+  /* margin: 47px; */
+  background-color: #24246a;
 }
 .scrollingLeft{
   margin-right: 6rem;
 }
-.card{
-  margin-left: 4rem;
-  margin-right: 5rem;
-  background-color: #e5edf4;
+.cards{
+  height: 13px;
+  width: 35%;
+  /* background-color: #e5edf4; */
 
 }
 
@@ -22,12 +24,11 @@
     width: 1063px;
     height: 512px;
     border: 1px solid #cbcccf;
-    background-color: rgb(202, 217, 251);
     margin-left: 4rem;
     
 }
 .dataGraph{ 
-    background-color: rgb(202, 217, 251);
+    background-color: rgb(61 77 138);
     /* margin: 2rem 36rem;*/
     margin-left: 4rem; 
     height: 28rem;
@@ -46,53 +47,91 @@
     
   th,td {
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     padding: 10px 15px;
-    border: 1px solid ;
+    border: 1px solid ; 
+    display: table-caption;
+
   }
-  .table {
-    margin-bottom: 0;
+  /* .tableCon, tableCap{
+    flex-direction: column;
+
+  } */
+
+  .table, tbody {
+    display: flex;
+     /* margin-bottom: 0;
     border: 1px;
     table-layout: auto;
-    width: 150px;
+    width: 150px;  */
   }
   
   .form-range::-webkit-slider-runnable-track {
     background-color: rgb(46, 96, 245);
   }
   .compBody{
-    background-color: rgb(227, 233, 240);
-    margin: 3rem;
+    background-color: rgb(61 77 138);
+    color: #f4f4f4;
     border: 1px solid #f4f4f4;
     padding: 12px;
+    width: 55rem;
+    height: 83%;
+    margin-left: 21px;
+    border-radius: 1rem;
+    margin-top: -21px;
+  }
+  .cardHeadBody{
+    /* border-left: 2px solid #ffff; */
+    margin-right: 33px;
   }
   .compHeader{
-    background-color: #c4c9f9;
+    /* background-color: #c4c9f9; */
     padding: 12px;
-    font: 1.5em Sans-serif;
-    margin: 35px;
+    font: 1.5em Verdana;
+    margin: 2px;
+    color: #fefeff;
 
   }
   /* .ConfSelect{
     margin: 28px;
   } */
 .columnTable{
-    overflow: auto;
-    padding: 1px;
-    margin: 45px;
+    padding: 55px;
+    margin: 2rem; 
+    border-style: solid;
+    vertical-align: inherit;
+    height: 356px;
+    width: 75%;
+    margin-top: 50px;
+    padding-top: 16px;
+    overflow-y: scroll;
+    color: #f4f4f4;
+    background-color: rgb(61 77 138);
 }
 .RangeComp{
-  margin-left: 11rem;
+ 
 }
 .DevelopedBy{
-  background-color: #aebafe;
+  background-color: rgb(10 24 80);
   height: 5rem;
-  color: #979ec1;
   text-align: center;
   padding: 28px;
-  color: #052efb;
+  color: #fefeff;
 }
 .form-select-sm{
   border-radius: 20px;
     border: 1px solid #5e43f4;
+}
+.ConfigCapacity{
+  margin: 3rem;
+  background-color: rgb(10 24 80);
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+.containerOI{
+  background-color: #24246a;
+ 
+}
+.outGraphNav{
+
 }

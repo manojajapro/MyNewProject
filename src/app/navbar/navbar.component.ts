@@ -36,6 +36,7 @@ export class NavbarComponent {
     this.preparechart();
   
   }
+  
 
   ngAfterViewInit() {}
 
@@ -218,57 +219,7 @@ preparechart() {
     strokeOpacity: 0,
   });
 
-  // Set data
-  // var data = [
-  //   {
-  //     country: 'DGO',
-  //     value: 30,
-  //   },
-  //   {
-  //     country: 'GAS',
-  //     value: 20,
-  //   },
-  //   {
-  //     country: 'HFO',
-  //     value: 40,
-  //   },
-  //   {
-  //     country: 'HSO',
-  //     value: 10,
-  //   },
-  //   {
-  //     country: 'HSW',
-  //     value: 70,
-  //   },
-  //   {
-  //     country: 'KJF',
-  //     value: 23,
-  //   },
-  //   {
-  //     country: 'LPG',
-  //     value: 15,
-  //   },
-  //   {
-  //     country: 'LSO',
-  //     value: 50,
-  //   },
-  //   {
-  //     country: 'LSW',
-  //     value: 30,
-  //   },
-  //   {
-  //     country: 'MSO',
-  //     value: 60,
-  //   },
-  //   {
-  //     country: 'MSW',
-  //     value: 10,
-  //   },
-  //   {
-  //     country: 'NAP',
-  //     value: 10,
-  //   },
-  // ];
+ 
   let data = this.graphValue1;
 
   xAxis.data.setAll(data);

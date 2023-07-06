@@ -1,13 +1,12 @@
 .graphData{ 
-    background-color: rgb(202, 217, 251);
-    margin: 0px 68px;
+    background-color: rgb(61 77 138);
+    margin: -6px 68px;
     
 }
 .DevelopedBy{
-    background-color: #aebafe;
+    background-color: #1a2249;
     height: 5rem;
-    color: #979ec1;
     text-align: center;
     padding: 28px;
-    color: #052efb;
+    color: #fefeff;
 }
