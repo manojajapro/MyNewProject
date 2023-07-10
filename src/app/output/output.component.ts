@@ -126,6 +126,11 @@ export class OutputComponent {
         tooltip: am5.Tooltip.new(root, {}),
       })
     );
+    xAxis.children.moveValue(am5.Label.new(root, {
+      text: "- Capacity",
+      x: am5.p50,
+      centerX: am5.p50
+    }), xAxis.children.length - 1);
 
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
@@ -133,6 +138,12 @@ export class OutputComponent {
         renderer: am5xy.AxisRendererY.new(root, {}),
       })
     );
+    yAxis.children.moveValue(am5.Label.new(root, {
+      rotation: -90,
+      text: "Thousand Barrels per day(kb/d)",
+      y: am5.p50,
+      centerX: am5.p50
+    }), 0);
 
     let series = chart.series.push(
       am5xy.ColumnSeries.new(root, {

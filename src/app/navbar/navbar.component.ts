@@ -165,15 +165,19 @@ preparechart() {
   xRenderer.grid.template.setAll({
     location: 1,
   });
-
   var xAxis = chart.xAxes.push(
-    am5xy.CategoryAxis.new(root, {
+    am5xy.CategoryAxis.new(root, { 
       maxDeviation: 0.3,
       categoryField: 'country',
       renderer: xRenderer,
       tooltip: am5.Tooltip.new(root, {}),
     })
   );
+  xAxis.children.moveValue(am5.Label.new(root, {
+    text: "Feeds",
+    x: am5.p50,
+    centerX: am5.p50
+  }), xAxis.children.length - 1);
 
   var yAxis = chart.yAxes.push(
     am5xy.ValueAxis.new(root, {
@@ -183,6 +187,12 @@ preparechart() {
       }),
     })
   );
+  yAxis.children.moveValue(am5.Label.new(root, {
+    rotation: -90,
+    text: "Capacity Thousand Barrels per day(kb/d)",
+    y: am5.p50,
+    centerX: am5.p50
+  }), 0);
 
   // Create series
   // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
