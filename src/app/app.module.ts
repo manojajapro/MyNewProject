@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InputComponent } from './input/input.component';
 import {HttpClientModule} from '@angular/common/http';
-// import { BackendDataComponent } from './backend-data/backend-data.component';
 import { OutputComponent } from './output/output.component';
+import { BackendDataService } from './backend-data.service';
 
 
 
@@ -16,8 +16,7 @@ import { OutputComponent } from './output/output.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    InputComponent,
-    // BackendDataComponent,
+    InputComponent, 
     OutputComponent
   ],
   imports: [
@@ -26,7 +25,7 @@ import { OutputComponent } from './output/output.component';
     HttpClientModule,
   
   ],
-  providers: [],
+  providers: [BackendDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

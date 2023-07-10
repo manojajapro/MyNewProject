@@ -15,7 +15,7 @@
 
         <form class="container-button justify-content-start" style="background-color: aliceblue;">
 
-            <button  type="button" class="btn btnToogle" onclick="window.location.reload();" (click)="InputToggle()" [ngClass]="{'btn-active': isActive}">INPUT</button>
+            <button  type="button" class="btn btnToogle" onclick="window.location.reload()" (click)="InputToggle()" [ngClass]="{'btn-active': isActive}">INPUT</button>
             <button  type="button" class="btn btnToogle" (click)="OutputToggle()" [ngClass]="{'btn-active': !isActive}">OUTPUT</button>
           </form>
 
@@ -37,9 +37,9 @@
 <div class="dropDownBar col-md-7">
   <div class="regionDiv ">
     <span><b> Region:</b></span>
-    <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
+    <select (change)="onChangeRegionEvent($event)" class="form-select form-select-sm d-inline-block"
         aria-label=".form-select-sm example">
-        <option *ngFor="let region of allRegions; let i = index" [value]="region">
+        <option *ngFor="let region of allRegionsList; let i = index" [value]="region">
             {{region}}
         </option>
     </select>
@@ -47,18 +47,17 @@
 
   <div class="cityDiv ">
     <span><b>City:</b></span>
-  <select (change)="onCityChangeHandler($event)" class="form-select form-select-sm "
+  <select (change)="onChangeCityEvent($event)" class="form-select form-select-sm "
       aria-label=".form-select-sm example">
-      <option *ngFor="let city of availableCitiesForSelectedRegion; let i=index" [value]="city">{{city}}
+      <option *ngFor="let city of selectedRegionCitiesList; let i=index" [value]="city">{{city}}
       </option>
   </select>
   </div>
 
   <div class="yearDiv ">
     <span><b> Year:</b></span>
-  <select (change)="onYearChangeHandler($event)" class="form-select form-select-sm"
-      aria-label=".form-select-sm example">
-      <option *ngFor="let year of availableYears"  [value]="year">{{year}}</option>
+  <select (change)="onChangeYearEvent($event)" class="form-select form-select-sm" aria-label=".form-select-sm example">
+      <option *ngFor="let year of selectedCityYearsList"  [value]="year">{{year}}</option>
   </select>
   </div>
 

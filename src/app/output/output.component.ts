@@ -23,18 +23,18 @@ export class OutputComponent {
   constructor(private service: BackendDataService) {}
 
   ngOnInit() {
-    this.fetchModelDate();
+    this.fetchModelData();
     
   }
 
   sortConfigData(arr: any) {
-    arr.sort(
+    arr.sort( //sort the array based on the comparison function passed as an argument.
       (a: any, b: any) =>
         a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
     );
   }
 
-  async fetchModelDate() {
+  async fetchModelData() {
     await this.service.getModelData().subscribe((data: any) => {
       this.gCapacity = data.global_cap;
       this.compLimit = data.comp_limit;
@@ -54,6 +54,7 @@ export class OutputComponent {
   }
 
   filterSelectedConfigData() {
+    //filtering data based on the selected configuration
     this.selectedConfigurationData = this.compLimit.filter((obj: any) => {
       return obj.Configuration == this.selectedConfiguration;
     });

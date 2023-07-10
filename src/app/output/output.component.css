@@ -49,7 +49,7 @@
   th,td {
     justify-content: center;
     align-items: center; 
-    padding: 6px 44px;
+    padding: 6px 43px;
     border: 1px solid ; 
     display: table-caption;
 
@@ -101,9 +101,9 @@
     border-style: solid;
     vertical-align: inherit;
     height: 356px;
-    width: 75%;
+    width: 74.5%;
     margin-top: 50px;
-    padding-top: 16px;
+    padding-top: 0px;
     overflow-y: scroll;
     color: #f4f4f4;
     background-color: rgb(61 77 138);

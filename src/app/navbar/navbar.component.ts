@@ -14,101 +14,103 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 export class NavbarComponent {
   isActive:boolean = true;
   inputChart : boolean=true ;
-  data: any = [];
-  allRegions: string[] = [];
-  availableCitiesForSelectedRegion: string[] = [];
-  availableYears: any = [];
-  selectedRegion: string = 'ANZ';
-  selectedCity: string = 'Altona';
-  selectedYear: number = 2005;
-  selectedObject: any;
-  graphValue: any;
-  graphValue1: any = [];
- 
+  fetchAllData: any = []; 
+  allRegionsList: any = [];
+  selectedRegionCitiesList: any = [];
+  selectedCityYearsList: any = [];
+  selectedRegionObject: any = [];
+  selectedCityObject: any = [];
+  selectedRegion: any;
+  selectedCity: any;
+  selectedYear: any;
+  graphValue1:any =[];
+  chartDiv: any = [];
 
-  constructor(private service: BackendDataService) {}
 
-  ngOnInit(): void {
-    this.fetchFeedsData();
-    this.getRYCFromApi('ANZ', 'Altona', 2005);
-    this.preparechart();
-  
+
+  //parameter called service
+
+  constructor(private dataService: BackendDataService) {} //BackendDataService class.
+  // This allows the class to access the methods and properties
+  // use them to retrieve or manipulate data.
+
+  ngOnInit() {
+    this.getCityRegionYearData();
   }
-  
 
-  ngAfterViewInit() {}
+  async getCityRegionYearData() {
+    await this.dataService.getRegionCityYear().subscribe((data: any) => {
+      this.fetchAllData = data.data; //getting all data's
+      this.setData();
+    })
+  }
 
-  // fetching 
-  async fetchFeedsData() {
-    await this.service.getfetchData().subscribe((data: any) => {
-      this.data = data.data;
-      this.preparechart();
-      this.extractRegions();
-      this.updateAvailData();
+  setData() {
+     this.fetchAllData.forEach((data: any) => {
+     this.allRegionsList.push(data.region);  
     });
+     this.setSelectedRegion("ANZ") 
+     this.setSelectedCity("Altona") 
+     this.setSelectedYear(2005) 
+     this.graphValue()
   }
 
-  updateAvailData() {
-    this.selectedObject = this.data.filter(
-      (i: any) => i.region == this.selectedRegion
-    );
-
-    
-     this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
-      (obj: any) => {
-        return obj.city;
-      }
-    );
-    this.updateYearsAvail();
+  graphValue() {
+    this.getChartValuesFromApi(this.selectedRegion, this.selectedCity, this.selectedYear)
   }
-  extractRegions() {
-    // extractiong regions
-    this.allRegions = this.data.map((obj: any) => {
-      return obj.region;
-    });
-    console.log('allRegions', this.allRegions);
-  }
-
-  updateYearsAvail() {
-    this.availableYears = this.selectedObject[0].cities.filter((obj: any) => {
-      return obj.city == this.selectedCity;
-    })[0].years;
-
-    this.selectedYear = this.availableYears[0];
-  }
-  onRegionChangeHandler(e: any) {
-    this.selectedRegion = e.target.value;
-    this.updateAvailData();
-    this.preparechart();
-  }
-  onCityChangeHandler(e: any) {
-    this.selectedCity = e.target.value;
-    this.updateAvailData();
-    this.preparechart();
-  }
-  onYearChangeHandler(e: any) {
-    this.selectedYear = e.target.value;
-    this.preparechart();
-  }
-  async getRYCFromApi(region: any, city: any, year: any) {
-    await this.service
-      .getValuesForRCY(region, city, year)
-      .subscribe((values: any) => {
-        console.log('values', values);
-        this.graphValue = values.data[0];
-        delete this.graphValue.Year;
-        delete this.graphValue.City;
-        delete this.graphValue.Region;
-  
-        Object.keys(this.graphValue).forEach((key: any) => {
-          this.graphValue1.push({
-            country: key,
-            value: this.graphValue[key],
-          });
-        });
-       
+  async getChartValuesFromApi(region:any, city:any, year:any){
+    await this.dataService.getChartValues(region, city, year).subscribe((data: any) => {
+     this.graphValue1 = [];
+      Object.entries(data.data[0]).forEach(entry => {
+        const [key, value] = entry;
+        if ((key !== "City") && (key !== "Region") && (key !== "Year")) {
+          this.graphValue1.push({ country: key, value: value});
+        }
       });
+
+      console.log("Input chart data values", this.graphValue1)
+     this.preparechart();
+    });
   }
+    onChangeRegionEvent(element:any) {
+     this.setSelectedRegion(element.target.value)
+     this.setSelectedCity(this.selectedRegionCitiesList[0])
+     this.setSelectedYear(this.selectedCityYearsList[0])
+     this.graphValue()
+  }
+  onChangeCityEvent(element:any) {
+     this.setSelectedCity(element.target.value)
+     this.setSelectedYear(this.selectedCityYearsList[0])
+     this.graphValue()
+  }
+   onChangeYearEvent(element:any) { 
+    this.setSelectedYear(element.target.value)
+    this.graphValue()
+  }
+  setSelectedRegion(region: any) {
+  this.selectedRegion = region; //getting the selected region 
+  this.selectedRegionObject = this.fetchAllData.filter((data:any) => 
+      data.region == this.selectedRegion
+    );
+
+  this.selectedRegionCitiesList = [];
+  this.selectedRegionObject[0].cities.forEach((region: any) => { //getting all the cities in the selected region
+  this.selectedRegionCitiesList.push(region.city);   
+    });
+  }
+
+  setSelectedCity(city: any) {
+    this.selectedCity = city;   //getting the selected city 
+    this.selectedCityObject = (this.selectedRegionObject[0].cities).filter((region:any) => 
+      region.city == this.selectedCity
+    );
+    this.selectedCityYearsList = this.selectedCityObject[0].years; //getting the years from selected city
+  }
+
+  setSelectedYear(year: any) {
+    this.selectedYear = year 
+  }
+
   InputToggle(){
     this.isActive = true;
     this.inputChart = true;
@@ -116,32 +118,18 @@ export class NavbarComponent {
   OutputToggle(){
     this.isActive = false;
     this.inputChart = false;
-
   }
 
+  // Assign the filtered data to the chart
 preparechart() {
-  /**
-   * ---------------------------------------
-   * This demo was created using amCharts 5.
-   *
-   * For more information visit:
-   * https://www.amcharts.com/
-   *
-   * Documentation is available at:
-   * https://www.amcharts.com/docs/v5/
-   * ---------------------------------------
-   */
 
-  let divId = 'chartdiv';
-    am5.array.each(am5.registry.rootElements, function (root) {
-      if (root.dom.id == divId) {
-        root.dispose();
-      }
-    });
+  if (this.chartDiv["inputChartdiv"]) {
+    this.chartDiv["inputChartdiv"].dispose() 
+ }
 
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-  var root = am5.Root.new('chartdiv');
+  var root = am5.Root.new('inputChartdiv');
 
   // Set themes
   // https://www.amcharts.com/docs/v5/concepts/themes/
@@ -218,16 +206,18 @@ preparechart() {
     strokeOpacity: 0,
   });
 
- 
-  let data = this.graphValue1;
+  this.chartDiv["inputChartdiv"] = root
 
-  xAxis.data.setAll(data);
-  series.data.setAll(data);
+  xAxis.data.setAll(this.graphValue1);
+  series.data.setAll(this.graphValue1);
 
   // Make stuff animate on load
   // https://www.amcharts.com/docs/v5/concepts/animations/
   series.appear(1000);
   chart.appear(1000, 100);
+
+  
+
   }
 
 

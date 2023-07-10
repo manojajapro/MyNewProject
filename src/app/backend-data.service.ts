@@ -7,22 +7,24 @@ import { HttpClient } from '@angular/common/http';
 export class BackendDataService {
   modelDataUrl: string = 'https://python-backend.ajapro.com/model-data';
   fetchDataUrl: string = 'https://python-backend.ajapro.com/fetch-data';
-  valuesPostUrl: string = 'https://python-backend.ajapro.com/feed-data';
+  valuesPostUrl: any = 'https://python-backend.ajapro.com/feed-data';
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   // model data
   getModelData(): any {
-    return this.http.get(this.modelDataUrl);
+    return this.httpClient.get(this.modelDataUrl);
   }
 
   // fetch data
-  getfetchData(): any {
-    return this.http.get(this.fetchDataUrl);
+  getRegionCityYear(): any {
+    return this.httpClient.get(this.fetchDataUrl);
   }
-  getValuesForRCY(region: any, city: string, year: any) {
-    return this.http.request('POST', this.valuesPostUrl, {
+  getChartValues(region: any, city: string, year: any) {
+    return this.httpClient.request('POST', this.valuesPostUrl, {
       params: { city, region, year },
     });
   }
+
+  
 }
